@@ -3,6 +3,7 @@ const Croqueta = require("./croquetas.model")
 const getAllCroquetas = async (req, res, next) => {
     try {
         const croquetas = await Croqueta.find()
+        console.log(`Obtenidas todas las croquetas: ${croquetas}`);
         return res.status(200).json(croquetas)
     } catch (error) {
         return next(error)
