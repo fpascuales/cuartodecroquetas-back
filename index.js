@@ -2,6 +2,7 @@ require("dotenv").config()
 const PORT = process.env.PORT
 
 const croquetasRoutes = require("./src/api/croquetas/croquetas.routes.js")
+const ordersRoutes = require("./src/api/orders/orders.routes.js")
 
 const express = require("express")
 const server = express()
@@ -14,6 +15,7 @@ server.use(express.json())
 server.use(express.urlencoded({extended: true}))
 
 server.use("/croquetas", croquetasRoutes)
+server.use("/orders", ordersRoutes)
 
 const db = require("./src/utils/db.js")
 
