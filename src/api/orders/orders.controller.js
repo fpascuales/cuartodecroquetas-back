@@ -24,7 +24,7 @@ const getLastOrder = async (req, res, next) => {
     try {
         const order = await Order.findOne({}).sort({ created_at: -1 }).exec();
         if (!order) {
-        return res.status(404).json({ message: 'No orders found' });
+        return res.status(404).json({ message: 'No hay ningún pedido de croquetas' });
         }
     return res.status(200).json(order);
     } catch (error) {
