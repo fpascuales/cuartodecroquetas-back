@@ -3,8 +3,8 @@ const { getAllOrders, getOrderById, createOrder, getLastOrder } = require("./ord
 const ordersRoutes = require("express").Router()
 
 ordersRoutes.get("/", getAllOrders)
-ordersRoutes.get("/:id", getOrderById)
 ordersRoutes.get("/last/", getLastOrder)
+ordersRoutes.get("/:id", getOrderById)
 ordersRoutes.post("/", createOrder)
 
 module.exports = ordersRoutes
