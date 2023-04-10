@@ -22,7 +22,7 @@ const getOrderById = async (req, res, next) => {
 }
 const getLastOrder = async (req, res, next) => {
     try {
-        const order = await Order.findOne({}, {}, { sort: { created_at: -1 } }).exec();
+        const order = await Order.findOne().sort({createdAt: -1}).exec();
         if (!order) {
         return res.status(404).json({ message: 'No hay ningún pedido de croquetas' });
         }
