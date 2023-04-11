@@ -3,6 +3,7 @@ const PORT = process.env.PORT
 
 const croquetasRoutes = require("./src/api/croquetas/croquetas.routes.js")
 const ordersRoutes = require("./src/api/orders/orders.routes.js")
+const userRoutes = require("./src/api/users/users.routes.js")
 
 const express = require("express")
 const server = express()
@@ -16,6 +17,7 @@ server.use(express.urlencoded({extended: true}))
 
 server.use("/croquetas", croquetasRoutes)
 server.use("/orders", ordersRoutes)
+server.use("/admin", userRoutes)
 
 const db = require("./src/utils/db.js")
 
