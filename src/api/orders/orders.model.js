@@ -14,7 +14,8 @@ const orderCroquetaSchema = new mongoose.Schema(
 const orderSchema = new mongoose.Schema(
     {
         orderCroqueta: [orderCroquetaSchema],
-        total: {type: Number, required: true}
+        total: {type: Number, required: true},
+        date: {type: String, required: true}
     },
     {
         timestamps: true,
