@@ -20,15 +20,15 @@ const login = async (req, res, next) => {
         return next(error)
     }
 }
-const signUp = async (req, res, next) => {
-    try {
-        const newUser = new User(req.body)
-        await newUser.save()
-        return res.status(201).json(newUser)
-    } catch (error) {
-        return next(error)
-    }
-}
+// const signUp = async (req, res, next) => {
+//     try {
+//         const newUser = new User(req.body)
+//         await newUser.save()
+//         return res.status(201).json(newUser)
+//     } catch (error) {
+//         return next(error)
+//     }
+// }
 
 module.exports = {
     login,
