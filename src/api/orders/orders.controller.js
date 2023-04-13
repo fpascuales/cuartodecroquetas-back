@@ -20,17 +20,27 @@ const getOrderById = async (req, res, next) => {
         return next(error)
     }
 }
+// const getLastOrder = async (req, res, next) => {
+//     try {
+//         const order = await Order.findOne().sort({createdAt: -1}).exec();
+//         if (!order) {
+//         return res.status(404).json({ message: 'No hay ningún pedido de croquetas' });
+//         }
+//     return res.status(200).json(order);
+//     } catch (error) {
+//         return next(error)
+//     }
+// }
 const getLastOrder = async (req, res, next) => {
     try {
-        const order = await Order.findOne().sort({createdAt: -1}).exec();
-        if (!order) {
-        return res.status(404).json({ message: 'No hay ningún pedido de croquetas' });
-        }
-    return res.status(200).json(order);
+      const order = await Order.findOne().sort({createdAt: -1}).exec();
+      return res.status(200).json(order || null); // Devuelve null si no hay ningún pedido
     } catch (error) {
-        return next(error)
+      return next(error)
     }
-}
+  }
+  
+
 const getLastTenOrder = async (req, res, next) => {
     try {
         const orders = await Order.find().sort({createdAt: -1}).limit(10).exec();
