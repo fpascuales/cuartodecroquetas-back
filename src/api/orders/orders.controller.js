@@ -42,15 +42,36 @@ const getLastTenOrder = async (req, res, next) => {
         return next(error)
     }
 }
+// const createOrder = async (req, res, next) => {
+//     try {
+//         const newOrder = await new Order(req.body)
+//         await newOrder.save()
+//         return res.json(newOrder)
+//     } catch (error) {
+//         return next(error)        
+//     }
+// }
+
 const createOrder = async (req, res, next) => {
     try {
-        const newOrder = await new Order(req.body)
-        await newOrder.save()
-        return res.json(newOrder)
-    } catch (error) {
-        return next(error)        
-    }
-}
+        const lastOrder = await Order.findOne().sort({ num: -1 }).exec();
+        const newNum = (lastOrder && lastOrder.num) ? lastOrder.num + 1 : 1;
+
+        const order = new Order({
+            orderCroqueta: req.body.orderCroqueta,
+            total: req.body.total,
+            date: req.body.date,
+            time: req.body.time,
+            num: newNum,
+          });
+      
+          const savedOrder = await order.save();
+      
+          return res.status(201).json(savedOrder);
+        } catch (error) {
+          return next(error);
+        }
+      };
 
 module.exports = {
     getAllOrders,
