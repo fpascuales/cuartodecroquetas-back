@@ -15,7 +15,7 @@ const croquetaSchema = new mongoose.Schema(
             type: {type: String, required: true, enum: ['Gluten', 'Crustáceos', 'Moluscos', 'Pescado', 'Huevo', 'Altramuces', 'Mostaza', 'Cacahuetes', 'Frutos Secos', 'Soja', 'Sésamo', 'Apio', 'Leche', 'Anhídrido Sulfuroso']}
          }   
         ],
-        id: {type: Number, required: true}
+        // id: {type: Number, required: true}
     },
     {
         timestamps: true,

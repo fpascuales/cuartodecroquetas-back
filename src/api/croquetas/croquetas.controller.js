@@ -23,7 +23,7 @@ const getCroquetasById = async (req, res, next) => {
 }
 const createCroqueta = async (req, res, next) => {
     try {
-        const weight = '250gr.'
+        const weight = '250 gr.'
         const croqueta = new Croqueta({
             name: req.body.name,
             image: req.body.image,
