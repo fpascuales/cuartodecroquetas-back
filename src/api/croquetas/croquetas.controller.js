@@ -21,8 +21,30 @@ const getCroquetasById = async (req, res, next) => {
         return next(error)
     }
 }
-
+const createCroqueta = async (req, res, next) => {
+    try {
+        const weight = '250gr.'
+        const croqueta = new Croqueta({
+            name: req.body.name,
+            image: req.body.image,
+            description: req.body.description,
+            price: req.body.price,
+            weight: weight,
+            units: req.body.units,
+            category: req.body.category,
+            allergens: [{
+                id: req.body.allergens.id,
+                type: req.body.allergens.type
+            }]
+        })
+        const savedCroqueta = await croqueta.save();
+        return res.status(201).json(savedCroqueta)
+    } catch (error) {
+        return next(error)
+    }
+}
 module.exports = {
     getAllCroquetas,
-    getCroquetasById
+    getCroquetasById,
+    createCroqueta
 }
