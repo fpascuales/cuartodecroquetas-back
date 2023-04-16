@@ -44,6 +44,15 @@ const createCroqueta = async (req, res, next) => {
         return next(error)
     }
 }
+const updateCroqueta = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const croquetaUpdated = await Croqueta.findByIdAndUpdate(id, req.body, {new:true})
+        return res.status(202).json(croquetaUpdated)
+    } catch (error) {
+        return next(error)
+    }
+}
 const deleteCroqueta = async (req, res, next) => {
     try {
         const { id } = req.params
@@ -57,5 +66,6 @@ module.exports = {
     getAllCroquetas,
     getCroquetasById,
     createCroqueta,
+    updateCroqueta,
     deleteCroqueta
 }
