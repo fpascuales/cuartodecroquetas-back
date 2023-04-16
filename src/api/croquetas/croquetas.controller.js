@@ -23,7 +23,6 @@ const getCroquetasById = async (req, res, next) => {
 }
 const createCroqueta = async (req, res, next) => {
     try {
-        const weight = '250 gr.'
         const allergens = req.body.allergens.map((allergen) => ({
             id: allergen.id,
             type: allergen.type
@@ -33,7 +32,6 @@ const createCroqueta = async (req, res, next) => {
             image: req.body.image,
             description: req.body.description,
             price: req.body.price,
-            weight: weight,
             units: req.body.units,
             category: req.body.category,
             allergens: allergens
