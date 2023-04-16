@@ -11,11 +11,9 @@ const croquetaSchema = new mongoose.Schema(
         category: { type: String, required: true, enum: ["Pescado", "Carne", "Verdura", "Queso"]},
         allergens: [
          {
-            id: {type: Number, required: true},
             type: {type: String, required: true, enum: ['Gluten', 'Crustáceos', 'Moluscos', 'Pescado', 'Huevo', 'Altramuces', 'Mostaza', 'Cacahuetes', 'Frutos Secos', 'Soja', 'Sésamo', 'Apio', 'Leche', 'Anhídrido Sulfuroso']}
          }   
         ]
-        // id: {type: Number, required: true}
     },
     {
         timestamps: true,
