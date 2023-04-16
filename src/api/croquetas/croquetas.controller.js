@@ -24,6 +24,10 @@ const getCroquetasById = async (req, res, next) => {
 const createCroqueta = async (req, res, next) => {
     try {
         const weight = '250 gr.'
+        const allergens = req.body.allergens.map((allergen) => ({
+            id: allergen.id,
+            type: allergen.type
+        }));
         const croqueta = new Croqueta({
             name: req.body.name,
             image: req.body.image,
@@ -32,10 +36,7 @@ const createCroqueta = async (req, res, next) => {
             weight: weight,
             units: req.body.units,
             category: req.body.category,
-            allergens: [{
-                id: req.body.allergens.id,
-                type: req.body.allergens.type
-            }]
+            allergens: allergens
         })
         const savedCroqueta = await croqueta.save();
         return res.status(201).json(savedCroqueta)
