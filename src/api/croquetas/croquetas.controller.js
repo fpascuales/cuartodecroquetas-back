@@ -44,8 +44,18 @@ const createCroqueta = async (req, res, next) => {
         return next(error)
     }
 }
+const deleteCroqueta = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const croquetaDeleted = await Croqueta.findByIdAndDelete(id)
+        return res.status(202).json(croquetaDeleted)
+    } catch (error) {
+        return next(error)
+    }
+}
 module.exports = {
     getAllCroquetas,
     getCroquetasById,
-    createCroqueta
+    createCroqueta,
+    deleteCroqueta
 }
