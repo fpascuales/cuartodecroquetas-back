@@ -6,7 +6,6 @@ const croquetaSchema = new mongoose.Schema(
         image: { type: String, required: true},
         description: { type: String, required: true},
         price: { type: Number, required: true},
-        weight: { type: String, required: true},
         units: { type: Number, required: true},
         category: { type: String, required: true, enum: ["Pescado", "Carne", "Verdura", "Queso"]},
         allergens: [
