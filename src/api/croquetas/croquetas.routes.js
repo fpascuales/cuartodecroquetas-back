@@ -5,7 +5,7 @@ const croquetasRoutes = require("express").Router()
 
 croquetasRoutes.get("/", getAllCroquetas)
 croquetasRoutes.get("/:id", getCroquetasById)
-croquetasRoutes.post("/", createCroqueta)
+croquetasRoutes.post("/", [isAuth], createCroqueta)
 croquetasRoutes.put("/:id", [isAuth], updateCroqueta)
 croquetasRoutes.delete("/:id", [isAuth], deleteCroqueta)
 
