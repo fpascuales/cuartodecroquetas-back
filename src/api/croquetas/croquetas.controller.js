@@ -24,7 +24,6 @@ const getCroquetasById = async (req, res, next) => {
 const createCroqueta = async (req, res, next) => {
     try {
         const allergens = req.body.allergens.map((allergen) => ({
-            id: allergen.id,
             type: allergen.type
         }));
         const croqueta = new Croqueta({
