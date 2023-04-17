@@ -7,6 +7,6 @@ croquetasRoutes.get("/", getAllCroquetas)
 croquetasRoutes.get("/:id", getCroquetasById)
 croquetasRoutes.post("/", [isAuth], createCroqueta)
 croquetasRoutes.put("/:id", [isAuth], updateCroqueta)
-croquetasRoutes.delete("/:id", deleteCroqueta)
+croquetasRoutes.delete("/:id", [isAuth], deleteCroqueta)
 
 module.exports = croquetasRoutes
