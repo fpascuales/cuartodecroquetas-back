@@ -1,11 +1,12 @@
+const { isAuth } = require("../../middlewares/auth")
 const { getAllOrders, getOrderById, createOrder, getLastOrder, getLastTenOrder } = require("./orders.controller")
 
 const ordersRoutes = require("express").Router()
 
-ordersRoutes.get("/", getAllOrders)
+ordersRoutes.get("/", [isAuth], getAllOrders)
 ordersRoutes.get("/last/", getLastOrder)
-ordersRoutes.get("/lastten/", getLastTenOrder)
-ordersRoutes.get("/:id", getOrderById)
+ordersRoutes.get("/lastten/", [isAuth], getLastTenOrder)
+ordersRoutes.get("/:id", [isAuth], getOrderById)
 ordersRoutes.post("/", createOrder)
 
 module.exports = ordersRoutes
