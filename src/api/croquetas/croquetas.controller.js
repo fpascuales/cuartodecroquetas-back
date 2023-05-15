@@ -1,3 +1,4 @@
+const { deleteFile } = require("../../middlewares/deleteFile");
 const Croqueta = require("./croquetas.model")
 
 const getAllCroquetas = async (req, res, next) => {
@@ -28,7 +29,7 @@ const createCroqueta = async (req, res, next) => {
         }));
         const croqueta = new Croqueta({
             name: req.body.name,
-            image: req.body.image,
+            image: req.file.path,
             description: req.body.description,
             price: req.body.price,
             units: req.body.units,
@@ -44,6 +45,13 @@ const createCroqueta = async (req, res, next) => {
 const updateCroqueta = async (req, res, next) => {
     try {
         const { id } = req.params
+        const croqueta =await Croqueta.findById(id);
+        if(req.file){
+            if(croqueta.image){
+                deleteFile(croqueta.image);
+            }
+            req.body.image = req.file.path;
+        }
         const croquetaUpdated = await Croqueta.findByIdAndUpdate(id, req.body, {new:true})
         return res.status(202).json(croquetaUpdated)
     } catch (error) {
@@ -53,6 +61,8 @@ const updateCroqueta = async (req, res, next) => {
 const deleteCroqueta = async (req, res, next) => {
     try {
         const { id } = req.params
+        const croqueta = await Croqueta.findById(id);
+        deleteFile(croqueta.image);
         const croquetaDeleted = await Croqueta.findByIdAndDelete(id)
         return res.status(202).json(croquetaDeleted)
     } catch (error) {
